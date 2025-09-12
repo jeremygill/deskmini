@@ -27,7 +27,8 @@ body {
   background-position: 5% 5%;
   background-repeat: no-repeat;
   background-size: 240px auto;
-  background-color: #007481;
+  background-image: url('path/to/your/image.jpg');
+  /*background-color: #007481;*/
   color: white;
   font-size: 36px;
 }
