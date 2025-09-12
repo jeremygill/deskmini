@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: 'Poppins-Regular';
-  src: url('.assets/Poppins-SemiBold.ttf');
+  src: url('.assets/Poppins-Regular.ttf');
   font-weight: normal;
   font-style: normal;
 }
@@ -22,7 +22,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: CiscoSansThin, arial;
+  font-family: Poppins-Regular;
   background-image: url('./images/UniSC_Abr-Logo_Horiz_RGB.png');
   background-position: 5% 5%;
   background-repeat: no-repeat;
