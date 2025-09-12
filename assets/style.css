@@ -102,7 +102,7 @@ button {
   background-size: cover;
 }
 
-.Call IT Support .avatar { background-image: url('./images/PhoneIcon.jpeg'); }
+.Call IT Support .avatar { background-image: url('./assets/images/PhoneIcon.jpeg'); }
 .Advice .avatar { background-image: url('./images/avatar2.jpg'); }
 .Credit .avatar { background-image: url('./images/ahauge.png'); }
 
