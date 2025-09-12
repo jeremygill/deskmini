@@ -22,7 +22,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: Poppins;
+  font-family: Poppins, Regular;
   background-image: url('./images/UniSC_Abr-Logo_Horiz_RGB.png');
   background-position: 5% 5%;
   background-repeat: no-repeat;
