@@ -1,45 +1,65 @@
 function setup() {
-
   Alpine.store('model', {
-    currentPage: 'home', // 'home', 'service'
+    // State
+    currentPage: 'home',               // 'home' | 'service' | 'instructions'
     currentLanguage: 'english',
-    dialNumber: 'erica.talking@ivr.vc',
-    services: [],
+    languages: ['english', 'norwegian'],
+
+    // Instructions content shown on the instructions page
     instructions: [
       'Step 1: Open the application.',
       'Step 2: Navigate to the settings menu.',
       'Step 3: Select the desired configuration.',
       'Step 4: Save and exit.',
     ],
-     
-    init() {
-      const params = new URLSearchParams(location.search);
-      if (params.has('number')) {
-        this.dialNumber = params.get('number');
-      }
-      this.services = [
-        { url: this.dialNumber, name: 'Call IT Support' },
-        { url: this.dialNumber, name: 'Advice' },
-        { url: this.dialNumber, name: 'Credit' },
-        { name: 'Instructions', page: 'instructions'},
-      ];
-    },
-    get page() {
-      return this.currentPage;
-    },
-    set page(nextPage) {
-      this.currentPage = nextPage;
-    },
-    currentLanguage: 'english',
-    languages: ['english', 'norwegian'],
-    get language() {
-      return this.currentLanguage;
-    },
-    set language(current) {
-      this.currentLanguage = current;
-    },
-  });
 
+    // Init (kept for future params if needed)
+    init() {
+      // If you later want to read ?number= from the URL or do setup, do it here.
+    },
+
+    // === Actions ===
+    async callIT() {
+      // Your WebRTC Join details
+      const args = {
+        BookingId: 'TeamsMeeting_4882312564533',
+        Title: 'Techbar UniSC Sunshine Coast',
+        TrackingData: 'WebrtcJoin_command',
+        Type: 'MSTeams',
+        Url: 'https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZjkzYWVjOWMtNTRhMy00MjgyLWEwZjAtOTM0MTgxM2RhNmMw%40thread.v2/0?context=%7b%22Tid%22%3a%2293b0ec50-fc3f-47ed-9345-9ffc6012541c%22%2c%22Oid%22%3a%22f4191fbd-c7c1-4fa0-8679-d380e280aebf%22%7d'
+      };
+
+      try {
+        // Prefer Webex Device xAPI if available in Web Engine
+        const api = window.xapi || window.XAPI || null;
+
+        // Device Macro-style binding
+        if (api?.Command?.WebRTC?.Join) {
+          await api.Command.WebRTC.Join(args);
+          return;
+        }
+
+        // WebEngine browser binding
+        if (typeof api?.command === 'function') {
+          await api.command('WebRTC Join', args);
+          return;
+        }
+
+        // If not on a device (e.g., testing on a laptop), open the URL so you can verify the flow.
+        window.open(args.Url, '_blank');
+      } catch (err) {
+        console.error('Failed to join via WebRTC:', err);
+        alert('Unable to start the call on this device. Please try again.');
+      }
+    },
+
+    // === Getters/Setters (keep 'page' reactive) ===
+    get page() { return this.currentPage; },
+    set page(nextPage) { this.currentPage = nextPage; },
+
+    get language() { return this.currentLanguage; },
+    set language(current) { this.currentLanguage = current; },
+  });
 }
 
 document.addEventListener('alpine:init', setup);
