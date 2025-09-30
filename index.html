@@ -6,30 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kiosk</title>
 
-  <!-- assets/logo.png -->
+  <!-- IMPORTANT: link is a void tag; do NOT close it with </link> -->
   assets/style.css
 
   <style>
     /* Hide elements with x-cloak only until Alpine is ready */
     [x-cloak] { display: none !important; }
-    /* Small visible fallback so you don't just see white if JS fails */
-    #fallback {
-      padding: 16px; font-family: system-ui, sans-serif; color: #666;
-    }
   </style>
 </head>
 <body>
 
-  <!-- Visible while scripts are loading (will be hidden by Alpine init) -->
-  <div id="fallback">Loading kiosk…</div>
-
-  <!-- Alpine app wrapper (use x-cloak here, not on <body>) -->
-  <div id="app" x-data="$store.model" x-init="init(); document.getElementById('fallback').style.display='none';" x-cloak>
+  <!-- Alpine app root -->
+  <div id="app" x-data="$store.model" x-init="init()" x-cloak>
 
     <!-- HOME -->
     <div class="home-screen" x-show="page === 'home'">
       <h1>UniSC TechBar</h1>
-      <h2 @click="page = 'service'" class="touch-to-start">Touch to Begin</h2>
+      <h2 @click="page = 'service'" class="touch-to-begin">Touch to Begin</h2>
 
       <div class="languages">
         <template x-for="current in languages" :key="current">
@@ -76,16 +69,8 @@
     </div>
   </div>
 
-  <!-- Scripts at the END of body, in this order -->
-  src/alpine.js</script>
-  src/main.js</script>
-
-  <!-- Tiny diagnostics: if either script fails to load you'll see it in console -->
-  <script>
-    (function () {
-      function log(msg){ try { console.log(msg); } catch(e){} }
-      log('index.html loaded');
-    })();
-  </script>
+  <!-- Scripts at the END of body; use CDN for Alpine to rule out path issues -->
+  https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js</script>
+  <rc/main.js</script>
 </body>
 </html>
