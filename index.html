@@ -41,6 +41,13 @@
           <label x-text="service.name"></label>
         </a>
       </template>
+      <template x-if="service.page">
+        #
+          <div class="avatar"></div>
+          <label x-text="service.name"></label>
+        </a>
+      </template>
+      
     </div>
     <button @click="page = 'home'" class="back">Back</button>
 
