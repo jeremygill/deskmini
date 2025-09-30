@@ -32,17 +32,28 @@
     </div>
   </div>
 
-  <div class="service" x-show="page === 'service'">
+   <div class="service" x-show="page === 'service'">
     <h2>Choose Your Service</h2>
     <div class="row">
-      <template x-for="service in services">
-        <a class="service" x-bind:href="'sip:'+ service.url" :class="service.name">
-          <div class="avatar"></div>
-          <label x-text="service.name"></label>
-        </a>
+      <template x-for="service in services" :key="service.name">
+        <template x-if="!service.page">
+          <a
+            class="service"
+            :href="`sip:${service.url}`"
+           text="service.name"></label>
+          </a>
+        </template>
+        <template x-if="service.page">
+          <a
+            class="service"
+            href="#"
+           -text="service.name"></label>
+          </a>
+        </template>
       </template>
     </div>
     <button @click="page = 'home'" class="back">Back</button>
+  </div>
 
     <div class="instructions" x-show="page === 'instructions'">
       <h2>Instructions</h2>
