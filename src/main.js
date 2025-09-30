@@ -2,7 +2,7 @@
   function setup() {
     Alpine.store('model', {
       // State
-      currentPage: 'home',                // 'home' | 'service' | 'instructions'
+      currentPage: 'home',                 // 'home' | 'service' | 'instructions'
       currentLanguage: 'english',
       languages: ['english', 'norwegian'],
 
@@ -16,7 +16,11 @@
 
       // Lifecycle
       init: function () {
-        // Keep for future setup (e.g., reading URL params)
+        // Hide the fallback if it hasn't been hidden yet
+        try {
+          var fb = document.getElementById('fallback');
+          if (fb) fb.style.display = 'none';
+        } catch (e) {}
       },
 
       // Actions
@@ -32,13 +36,13 @@
         try {
           var api = window.xapi || window.XAPI || null;
 
-          // Macro-style binding: xapi.Command.WebRTC.Join(args)
+          // Device Macro-style binding
           if (api && api.Command && api.Command.WebRTC && typeof api.Command.WebRTC.Join === 'function') {
             api.Command.WebRTC.Join(args);
             return;
           }
 
-          // WebEngine browser binding: xapi.command('WebRTC Join', args)
+          // WebEngine browser binding
           if (api && typeof api.command === 'function') {
             api.command('WebRTC Join', args);
             return;
@@ -47,12 +51,12 @@
           // Fallback for non-device testing
           window.open(args.Url, '_blank');
         } catch (e) {
-          console.error('Failed to start WebRTC Join:', e);
+          try { console.error('Failed to start WebRTC Join:', e); } catch(_) {}
           alert('Unable to start the call on this device. Please try again.');
         }
       },
 
-      // Getters/Setters
+      // Reactive accessors
       get page() { return this.currentPage; },
       set page(next) { this.currentPage = next; },
 
@@ -61,10 +65,13 @@
     });
   }
 
-  // Register the store whether Alpine is loaded before or after this script
+  // Register the store whether Alpine is already present or not
   if (window.Alpine) {
     setup();
   } else {
     document.addEventListener('alpine:init', setup);
   }
+
+  // Basic log to confirm main.js actually ran
+  try { console.log('main.js loaded and store registered'); } catch(e) {}
 })();
