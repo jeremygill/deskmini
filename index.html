@@ -51,16 +51,6 @@
       <span x-text="service.name"></span>
     </button>
   </template>
-
-  <div x-show="$store.model.page === 'instructions'">
-    <h2>Instructions</h2>
-    <ul>
-      <template x-for="step in $store.model.instructions" :key="step">
-        <li x-text="step"></li>
-      </template>
-    </ul>
-  </div>
-
   
 </body>
 
