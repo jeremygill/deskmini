@@ -41,18 +41,8 @@
           <label x-text="service.name"></label>
         </a>
       </template>
-      <template x-if="service.page">
-              <a
-                class="service"
-                href="#"
-               -text="service.name"></label>
-              </a>
-      </template>
-      
     </div>
     <button @click="page = 'home'" class="back">Back</button>
-
-
 
 
     <div class="instructions" x-show="page === 'instructions'">
