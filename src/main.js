@@ -6,12 +6,7 @@ function setup() {
     currentLanguage: 'english',
     dialNumber: 'erica.talking@ivr.vc',
     services: [],
-    instructions: [
-    'Step 1: Open the application.',
-    'Step 2: Navigate to the settings menu.',
-    'Step 3: Select the desired configuration.',
-    'Step 4: Save and exit.',
-  ]
+   ]
 
 
     init() {
