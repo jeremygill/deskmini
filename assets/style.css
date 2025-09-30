@@ -103,6 +103,8 @@ button {
 }
 
 .CallIT .avatar { background-image: url('./images/PhoneIcon.jpg'); }
+.Advice .avatar { background-image: url('./images/avatar2.jpg'); }
+.Credit .avatar { background-image: url('./images/ahauge.png'); }
 .Instructions .avatar { background-image: url('./images/helpicon.png'); }
 
 .back {
