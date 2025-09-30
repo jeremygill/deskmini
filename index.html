@@ -9,67 +9,83 @@
   <!-- assets/logo.png -->
   assets/style.css
 
-  <!-- Load Alpine first, then your app code -->
+  <style>
+    /* Hide elements with x-cloak only until Alpine is ready */
+    [x-cloak] { display: none !important; }
+    /* Small visible fallback so you don't just see white if JS fails */
+    #fallback {
+      padding: 16px; font-family: system-ui, sans-serif; color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Visible while scripts are loading (will be hidden by Alpine init) -->
+  <div id="fallback">Loading kiosk…</div>
+
+  <!-- Alpine app wrapper (use x-cloak here, not on <body>) -->
+  <div id="app" x-data="$store.model" x-init="init(); document.getElementById('fallback').style.display='none';" x-cloak>
+
+    <!-- HOME -->
+    <div class="home-screen" x-show="page === 'home'">
+      <h1>UniSC TechBar</h1>
+      <h2 @click="page = 'service'" class="touch-to-start">Touch to Begin</h2>
+
+      <div class="languages">
+        <template x-for="current in languages" :key="current">
+          <div
+            class="language"
+            x-text="current"
+            @click="language = current"
+            :class="language === current && 'selected'">
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="service" x-show="page === 'service'">
+      <h2>Choose Your Service</h2>
+
+      <div class="row">
+        <!-- Call IT Support (runs WebRTC Join) -->
+        #
+          <div class="avatar"></div>
+          <label>Call IT Support</label>
+        </a>
+
+        <!-- Instructions (navigates to instructions page) -->
+        #
+          <div class="avatar"></div>
+          <label>Instructions</label>
+        </a>
+      </div>
+
+      <button @click="page = 'home'" class="back">Back</button>
+    </div>
+
+    <!-- INSTRUCTIONS PAGE -->
+    <div class="instructions" x-show="page === 'instructions'">
+      <h2>Instructions</h2>
+      <ul>
+        <template x-for="step in instructions" :key="step">
+          <li x-text="step"></li>
+        </template>
+      </ul>
+      <button @click="page = 'service'" class="back">Back</button>
+    </div>
+  </div>
+
+  <!-- Scripts at the END of body, in this order -->
   src/alpine.js</script>
   src/main.js</script>
 
-  <style>
-    /* Prevents flash before Alpine initializes */
-    [x-cloak] { display: none !important; }
-  </style>
-</head>
-<body
-  x-cloak
-  x-data="$store.model"
-  x-init="init()"
->
-  <!-- HOME -->
-  <div class="home-screen" x-show="page === 'home'">
-    <h1>UniSC TechBar</h1>
-    <h2 @click="page = 'service'" class="touch-to-start">Touch to Begin</h2>
-
-    <div class="languages">
-      <template x-for="current in languages" :key="current">
-        <div
-          class="language"
-          x-text="current"
-          @click="language = current"
-          :class="language === current && 'selected'"
-        ></div>
-      </template>
-    </div>
-  </div>
-
-  <!-- SERVICES -->
-  <div class="service" x-show="page === 'service'">
-    <h2>Choose Your Service</h2>
-
-    <div class="row">
-      <!-- Call IT Support (runs WebRTC Join) -->
-      #
-        <div class="avatar"></div>
-        <label>Call IT Support</label>
-      </a>
-
-      <!-- Instructions (navigates to instructions page) -->
-      #
-        <div class="avatar"></div>
-        <label>Instructions</label>
-      </a>
-    </div>
-
-    <button @click="page = 'home'" class="back">Back</button>
-  </div>
-
-  <!-- INSTRUCTIONS PAGE -->
-  <div class="instructions" x-show="page === 'instructions'">
-    <h2>Instructions</h2>
-    <ul>
-      <template x-for="step in instructions" :key="step">
-        <li x-text="step"></li>
-      </template>
-    </ul>
-    <button @click="page = 'service'" class="back">Back</button>
-  </div>
+  <!-- Tiny diagnostics: if either script fails to load you'll see it in console -->
+  <script>
+    (function () {
+      function log(msg){ try { console.log(msg); } catch(e){} }
+      log('index.html loaded');
+    })();
+  </script>
 </body>
 </html>
