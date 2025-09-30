@@ -6,9 +6,7 @@ function setup() {
     currentLanguage: 'english',
     dialNumber: 'erica.talking@ivr.vc',
     services: [],
-   ]
-
-
+   
     init() {
       const params = new URLSearchParams(location.search);
       if (params.has('number')) {
