@@ -45,13 +45,6 @@
     <button @click="page = 'home'" class="back">Back</button>
   </div>
 
-<div x-data>
-  <template x-for="service in $store.model.services" :key="service.name">
-    <button @click="$store.model.page = service.page || 'service'">
-      <span x-text="service.name"></span>
-    </button>
-  </template>
-  
 </body>
 
 </html>
