@@ -43,6 +43,16 @@
       </template>
     </div>
     <button @click="page = 'home'" class="back">Back</button>
+ 
+  <div class="service" x-show="page === 'instructions'">
+    <h2>Instructions</h2>
+    <ul>
+      <template x-for="step in $store.model.instructions" :key="step">
+        <li x-text="step"></li>
+      </template>
+    </ul>
+  </div>
+  <button @click="page = 'home'" class="back">Back</button>
 </body>
 
 </html>
