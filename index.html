@@ -47,12 +47,11 @@
           <label x-text="service.name"></label>
         </a>
       </template>
+    <button @click="page = 'service'" class="back">Back</button>
 </div>
 
-      
-    </div>
-    <button @click="page = 'home'" class="back">Back</button>
-
+   
+ 
 <!-- Instructions Page -->
 <div class="instructions" x-show="page === 'instructions'">
   <h2>Instructions</h2>
