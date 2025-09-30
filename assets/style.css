@@ -105,7 +105,7 @@ button {
 .CallIT .avatar { background-image: url('./images/PhoneIcon.png'); }
 .Advice .avatar { background-image: url('./images/avatar2.jpg'); }
 .Credit .avatar { background-image: url('./images/ahauge.png'); }
-.Instructions .avatar { background-image: url('./images/avatar2.jpg'); }
+.Instructions .avatar { background-image: url('./images/PhoneIcon.jpg'); }
 
 .back {
   position: absolute;
