@@ -12,9 +12,7 @@ function setup() {
       'Step 3: Select the desired configuration.',
       'Step 4: Save and exit.',
     ]
-  ],
-
-   
+     
     init() {
       const params = new URLSearchParams(location.search);
       if (params.has('number')) {
