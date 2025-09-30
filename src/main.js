@@ -16,11 +16,7 @@
 
       // Lifecycle
       init: function () {
-        // Hide the fallback if it hasn't been hidden yet
-        try {
-          var fb = document.getElementById('fallback');
-          if (fb) fb.style.display = 'none';
-        } catch (e) {}
+        // Reserved for any setup (e.g., reading URL params)
       },
 
       // Actions
@@ -71,7 +67,4 @@
   } else {
     document.addEventListener('alpine:init', setup);
   }
-
-  // Basic log to confirm main.js actually ran
-  try { console.log('main.js loaded and store registered'); } catch(e) {}
 })();
