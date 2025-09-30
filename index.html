@@ -5,51 +5,66 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kiosk</title>
-  assets/style.css
-  main.js</script>
-  src/alpine.js</script>
+  <!-- <link rel="icon" type="image/png" href="assets/logo.png"> -->
+  <link rel="stylesheet" href="assets/style.css"></link>
+  <script src="src/main.js" defer></script>
+  <script src="src/alpine.js" defer></script>
+  <!-- <script src="https://unpkg.com/alpinejs" defer></script> -->
 </head>
-<body x-cloak x-data="{ page, services, language, languages, instructions } = $store.model">
-
-  <!-- Home Page -->
+<body
+  x-cloak
+  x-data="{ page, services, language, languages } = $store.model"
+>
   <div class="home-screen" x-show="page === 'home'">
     <h1>UniSC TechBar</h1>
+
     <h2 @click="page = 'service'" class="touch-to-start">Touch to Begin</h2>
+
     <div class="languages">
-      <template x-for="current in languages" :key="current">
+      <template x-for="current in languages">
         <div
           class="language"
-         click="language = current"
+          x-text="current"
+          @click="language = current"
           :class="language === current && 'selected'"
         ></div>
       </template>
     </div>
   </div>
-
-  <!-- Service Page -->
+  
   <div class="service" x-show="page === 'service'">
     <h2>Choose Your Service</h2>
     <div class="row">
-      <template x-for="service in services" :key="service.name">
-        service.page ? 
+     <template x-for="service in services">
+        <a class="service" x-bind:href="'sip:'+ service.url" :class="service.name">
           <div class="avatar"></div>
           <label x-text="service.name"></label>
         </a>
       </template>
+      <template x-if="service.page">
+        #
+          <div class="avatar"></div>
+          <label x-text="service.name"></label>
+        </a>
+      </template>
+</div>
+
+      
     </div>
     <button @click="page = 'home'" class="back">Back</button>
-  </div>
 
-  <!-- Instructions Page -->
-  <div class="instructions" x-show="page === 'instructions'">
-    <h2>Instructions</h2>
-    <ul>
-      <template x-for="step in instructions" :key="step">
-        <li x-text="step"></li>
-      </template>
-    </ul>
-    <button @click="page = 'service'" class="back">Back</button>
-  </div>
+<!-- Instructions Page -->
+<div class="instructions" x-show="page === 'instructions'">
+  <h2>Instructions</h2>
+  <ul>
+    <template x-for="step in instructions" :key="step">
+      <li x-text="step"></li>
+    </template>
+  </ul>
+  <button @click="page = 'service'" class="back">Back</button>
+</div>
+
 
 </body>
+
 </html>
