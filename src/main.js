@@ -22,7 +22,7 @@ function setup() {
         { url: this.dialNumber, name: 'Call IT Support' },
         { url: this.dialNumber, name: 'Advice' },
         { url: this.dialNumber, name: 'Credit' },
-        { url: this.instructions, name: 'Instructions', page: 'instructions'},
+        { name: 'Instructions', page: 'instructions'},
       ];
     },
     get page() {
