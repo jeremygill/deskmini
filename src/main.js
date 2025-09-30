@@ -6,6 +6,13 @@ function setup() {
     currentLanguage: 'english',
     dialNumber: 'erica.talking@ivr.vc',
     services: [],
+    instructions: [
+      'Step 1: Open the application.',
+      'Step 2: Navigate to the settings menu.',
+      'Step 3: Select the desired configuration.',
+      'Step 4: Save and exit.',
+  ],
+
    
     init() {
       const params = new URLSearchParams(location.search);
@@ -16,6 +23,7 @@ function setup() {
         { url: this.dialNumber, name: 'Call IT Support' },
         { url: this.dialNumber, name: 'Advice' },
         { url: this.dialNumber, name: 'Credit' },
+        { url: '#', name: 'Instructions', page: 'instructions'},
       ];
     },
     get page() {
