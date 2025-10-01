@@ -1,73 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kiosk</title>
-  <!-- <link rel="icon" type="image/png" href="assets/logo.png"> -->
-  <link rel="stylesheet" href="assets/style.css"></link>
-  <script src="src/main.js" defer></script>
-  <script src="src/alpine.js" defer></script>
-  <!-- <script src="https://unpkg.com/alpinejs" defer></script> -->
+
+  <!-- Stylesheet (note: <link> is a void element; no closing </link>) -->
+  assets/style.css
+
+  <style>
+    /* Hide elements with x-cloak only until Alpine is ready */
+    [x-cloak] { display: none !important; }
+  </style>
 </head>
 <body
-  x-cloak
   x-data="$store.model"
+  x-init="init()"
+  x-cloak
 >
+  <!-- HOME -->
   <div class="home-screen" x-show="page === 'home'">
     <h1>UniSC TechBar</h1>
 
     <h2 @click="page = 'service'" class="touch-to-start">Touch to Begin</h2>
 
     <div class="languages">
-      <template x-for="current in languages">
+      <template x-for="current in languages" :key="current">
         <div
           class="language"
           x-text="current"
           @click="language = current"
-          :class="language === current && 'selected'"
-        ></div>
+          :class="language === current && 'selected'">
+        </div>
       </template>
     </div>
   </div>
-  
+
+  <!-- SERVICES -->
   <div class="service" x-show="page === 'service'">
     <h2>Choose Your Service</h2>
+
     <div class="row">
-  <template x-for="service in services" :key="service.name">
-    <!-- Page-type tile (e.g., Instructions) -->
-    <template x-if="service.page">
-      <button type="button" class="service" :class="service.className" @click="page = instructions.page">
-        <div class="avatar"></div>
-        <label x-text="service.name"></label>
-      </button>
-    </template>
+      <template x-for="service in services" :key="service.name">
+        <!-- Page-type tile (e.g., Instructions) -->
+        <template x-if="service.page">
+          <!-- Use an <a> so it looks exactly like other tiles; prevent default and set page -->
+          #
+            <div class="avatar"></div>
+            <label x-text="service.name"></label>
+          </a>
+        </template>
 
-    <!-- SIP/link tile (e.g., Call IT Support) -->
-    <template x-if="!service.page">
-      <a class="service" :class="service.className" :href="'sip:' + service.url">
-        <div class="avatar"></div>
-        <label x-text="service.name"></label>
-      </a>
-    </template>
-  </template>
-      <button @click="page = 'service'" class="back">Back</button>
-</div>
-   
- 
-<!-- Instructions Page -->
-<div class="instructions" x-show="page === 'instructions'">
-  <h2>Instructions</h2>
-  <ul>
-    <template x-for="step in instructions" :key="step">
-      <li x-text="step"></li>
-    </template>
-  </ul>
-  <button @click="page = 'service'" class="back">Back</button>
-</div>
+        <!-- SIP/link tile (e.g., Call IT Support) -->
+        <template x-if="!service.page">
+          <!-- Do NOT use .prevent so the SIP link still works -->
+          <a
+            class="service"
+            :class="service.className || service.name.split(' ').join('')"
+            :href="'sip:' + service.url"
+          >
+            <div class="avatar"></div>
+            <label x-text="service.name"></label>
+          </a>
+        </template>
+      </template>
+    </div>
 
+    <button @click="page = 'home'" class="back">Back</button>
+  </div>
 
+  <!-- INSTRUCTIONS PAGE -->
+  <div class="instructions" x-show="page === 'instructions'">
+    <h2>Instructions</h2>
+    <ul>
+      <template x-for="step in instructions" :key="step">
+        <li x-text="step"></li>
+      </template>
+    </ul>
+    <button @click="page = 'service'" class="back">Back</button>
+  </div>
+
+  <!-- Scripts (Alpine first, then your app) -->
+  src/alpine.js</script>
+  src/main.js</script>
 </body>
-
 </html>
