@@ -1,5 +1,3 @@
-import xapi from 'xapi'
-
 function setup() {
 
   Alpine.store('model', {
@@ -37,6 +35,7 @@ function setup() {
 
 
 document.addEventListener('alpine:init', setup);
+
 
 
 
