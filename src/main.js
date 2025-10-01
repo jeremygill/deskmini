@@ -12,9 +12,7 @@ function setup() {
         this.dialNumber = params.get('number');
       }
       this.services = [
-        { url: this.dialNumber, name: 'Call IT Support' },
-        { name: 'Instructions', page: 'instructions', className: 'Instructions' },
-  
+        { url: this.dialNumber, name: 'Call IT Support' },       
       ];
     },
     get page() {
@@ -37,4 +35,5 @@ function setup() {
 
 
 document.addEventListener('alpine:init', setup);
+
 
