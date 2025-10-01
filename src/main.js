@@ -21,7 +21,8 @@ function setup() {
         { url: this.dialNumber, name: 'Call IT Support' },
         { url: this.dialNumber, name: 'Advice' },
         { url: this.dialNumber, name: 'Credit' },
-        { name: 'Instructions', page: 'instructions'},
+        { name: 'Instructions', page: 'instructions', className: 'Instructions' },
+  
       ];
     },
     get page() {
@@ -41,5 +42,6 @@ function setup() {
   });
 
 }
+
 
 document.addEventListener('alpine:init', setup);
