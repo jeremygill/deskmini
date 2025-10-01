@@ -1,4 +1,4 @@
-import xapi from 'xapi';
+import xapi from 'xapi'
 
 function setup() {
 
@@ -37,5 +37,6 @@ function setup() {
 
 
 document.addEventListener('alpine:init', setup);
+
 
 
