@@ -102,6 +102,19 @@ button {
   background-size: cover;
 }
 
+/* Self-Help Page Styling */
+.self-help {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 2rem;
+}
+
+.instructions-container {
+  align-self: flex-start;
+  max-width: 400px;
+}
+
 .CallIT .avatar { background-image: url('./images/PhoneIcon.jpg'); }
 .Advice .avatar { background-image: url('./images/avatar2.jpg'); }
 .Credit .avatar { background-image: url('./images/ahauge.png'); }
