@@ -38,7 +38,7 @@
   <template x-for="service in services" :key="service.name">
     <!-- Page-type tile (e.g., Instructions) -->
     <template x-if="service.page">
-      <button type="button" class="service" :class="service.className" @click="page = service.page">
+      <button type="button" class="service" :class="service.className" @click="page = instructions.page">
         <div class="avatar"></div>
         <label x-text="service.name"></label>
       </button>
