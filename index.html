@@ -47,6 +47,11 @@
           <label x-text="service.name"></label>
         </a>
       </template>
+
+    <a class="service self-help" @click="page = 'selfHelp'">
+      <div class="avatar"></div>
+      <label>Self-Help</label>
+      
     <button @click="page = 'home'" class="back">Back</button>
 </div>
 
@@ -62,6 +67,19 @@
   </ul>
   <button @click="page = 'service'" class="back">Back</button>
 </div>
+
+<!-- Self-Help Page -->
+<div class="self-help" x-show="page === 'selfHelp'">
+  <h2>Self-Help</h2>
+  <ul>
+    <li>Step 1: Try restarting your device.</li>
+    <li>Step 2: Check your internet connection.</li>
+    <li>Step 3: Visit our online help resources.</li>
+  </ul>
+  <button @click="page = 'service'" class="back">Back</button>
+</div>
+
+    
 
 
 </body>
