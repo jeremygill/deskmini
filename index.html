@@ -35,12 +35,19 @@
 <div class="service" x-show="page === 'service'">
   <h2>Choose Your Service</h2>
   <div class="row">
+   
     <template x-for="service in services">
-      <a class="service" x-bind:href="'sip:' + service.url" :class="service.name">
+      <a 
+        class="service" 
+        x-bind:href="'sip:' + service.url" 
+        :class="service.name"
+        :id="service.name === 'Call IT Support' ? 'CallIT' : null"
+      >
         <div class="avatar"></div>
         <label x-text="service.name"></label>
       </a>
     </template>
+
 
     <!-- Self-Help Button -->
     <a class="service self-help" @click="page = 'selfHelp'">
