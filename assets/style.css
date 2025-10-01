@@ -102,29 +102,6 @@ button {
   background-size: cover;
 }
 
-/* ============================
-   Self-Help Page Custom Styles
-   ============================ */
-
-.self-help {
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
-}
-
-.instructions-left {
-  position: absolute;
-  left: 2rem;
-  top: 8rem; /* adjust based on your header height */
-  max-width: 400px;
-  font-size: 1.2rem;
-}
-
-.self-help .back {
-  margin-top: 2rem;
-}
-
-
 .CallIT .avatar { background-image: url('./images/PhoneIcon.jpg'); }
 .Advice .avatar { background-image: url('./images/avatar2.jpg'); }
 .Credit .avatar { background-image: url('./images/ahauge.png'); }
