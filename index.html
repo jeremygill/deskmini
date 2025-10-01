@@ -52,18 +52,6 @@
   <button @click="page = 'home'" class="back">Back</button>
 </div>
    
- 
-<!-- Instructions Page -->
-<div class="instructions" x-show="page === 'instructions'">
-  <h2>Instructions</h2>
-  <ul>
-    <template x-for="step in instructions" :key="step">
-      <li x-text="step"></li>
-    </template>
-  </ul>
-  <button @click="page = 'service'" class="back">Back</button>
-</div>
-
 <!-- Self-Help Page -->
 <div class="self-help" x-show="page === 'selfHelp'">
   <h2>Self-Help</h2>
