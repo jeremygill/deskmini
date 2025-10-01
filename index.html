@@ -13,7 +13,7 @@
 </head>
 <body
   x-cloak
-  x-data="{ page, services, instructions, language, languages } = $store.model"
+  x-data="{ page, services, language, languages } = $store.model"
 >
   <div class="home-screen" x-show="page === 'home'">
     <h1>UniSC TechBar</h1>
@@ -35,13 +35,12 @@
   <div class="service" x-show="page === 'service'">
     <h2>Choose Your Service</h2>
     <div class="row">
-      <template x-for="service in services" :key="service.name">
-        service.page ? 
+     <template x-for="service in services">
+        <a class="service" x-bind:href="'sip:'+ service.url" :class="service.name">
           <div class="avatar"></div>
           <label x-text="service.name"></label>
         </a>
       </template>
-    </div>
       <template x-if="service.page">
         #
           <div class="avatar"></div>
