@@ -26,9 +26,8 @@ function setup() {
             event.preventDefault();
 
             if (platform.includes('cisco')) {
-              // ✅ Cisco platform detected
-              console.log('Cisco platform detected. Macro on device should handle the panel click.');
-              // No action needed here — macro will respond to panel click
+              triggerCiscoJoin(); // Call the function from cisco
+              
             } else {
               // ✅ Windows platform
               window.open(
@@ -59,3 +58,4 @@ function setup() {
 }
 
 document.addEventListener('alpine:init', setup);
+
