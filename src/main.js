@@ -25,12 +25,10 @@ function setup() {
           callITButton.addEventListener('click', (event) => {
             event.preventDefault();
 
-            if (platform.includes('cisco')) {
+          
               triggerCiscoJoin(); // Call the function from cisco
-              
-            } else {
-              // ✅ Windows platform
-              triggerCiscoJoin();
+             
+         
               );
             }
           });
@@ -56,6 +54,7 @@ function setup() {
 }
 
 document.addEventListener('alpine:init', setup);
+
 
 
 
