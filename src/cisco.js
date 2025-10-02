@@ -2,7 +2,7 @@ function triggerCiscoJoin() {
   fetch('https://<cisco-device-ip>/putxml', {
     method: 'POST',
     headers: {
-      'Authorization': 'Basic ' + btoa('admin:yourpassword'), // Replace with actual credentials
+      'Authorization': 'Basic ' + btoa('techbar:rvz-pcb1hzr8KPA0fwd'), // Replace with actual credentials
       'Content-Type': 'text/xml'
     },
     body: `
