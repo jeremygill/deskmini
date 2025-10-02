@@ -1,3 +1,4 @@
+function triggerCiscoJoin() {
 import xapi from 'xapi';
 
 // Listen for button press
