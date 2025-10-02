@@ -30,7 +30,7 @@ function setup() {
               
             } else {
               // ✅ Windows platform
-              triggerCiscoJoin()
+              triggerCiscoJoin();
               );
             }
           });
